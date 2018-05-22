@@ -39,24 +39,24 @@ export default class NewsFeed extends Component {
   componentDidUpdate() {
     const { todays_news, provider_news, term_results } = this.props;
     const { news } = this.state;
-    const now = Math.floor(Date.now() / 1000);
+    //const now = Math.floor(Date.now() / 1000);
     const { refresh_news_boolean } = this.props
-
-    const active_articles = !provider_news && !term_results && !news || todays_news.timestamp === now ?
+    console.log(refresh_news_boolean);
+    const active_articles = !news && !provider_news && !term_results && todays_news || refresh_news_boolean ?
                             todays_news.news :
                             provider_news && !term_results ?
                             provider_news.news :
                             !provider_news && term_results ?
                             term_results.news :
                             provider_news && term_results &&
-                            term_results.timestamp > provider_news.timestamp ?
+                            term_results.timestamp > provider_news.timestamp ?//&& term_results.timestamp > todays_news.timestamp ?
                             term_results.news :
                             provider_news && term_results &&
-                            provider_news.timestamp > term_results.timestamp ?
+                            provider_news.timestamp > term_results.timestamp ?//&& provider_news.timestamp > todays_news.timestamp ?
                             provider_news.news :
                             news;
 
-    //console.log('active', active_articles);
+    console.log('active', active_articles);
     this.setState({ news: active_articles });
   }
   componentWillUnmount() {
@@ -67,7 +67,7 @@ export default class NewsFeed extends Component {
     const { news } = this.state;
     const { todays_news } = this.props;
     let articles = !todays_news.news ? [] : [...news];
-    console.log('char', articles, news);
+    console.log('char', articles, news, todays_news);
     if (articles.length === 0) {
       return <div>Loading...</div>
     }

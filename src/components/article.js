@@ -25,10 +25,14 @@ export default class Article extends Component {
       window.addEventListener('scroll', function() {
         article_wraps.forEach(wrap => {
           const wrapCoords = wrap.getBoundingClientRect();
+          //const nav = document.querySelector('.news_header');
+          //console.log(nav)
           //console.log({scroll: window.scrollY, top: wrapCoords.top, bottom: wrapCoords.bottom})
-          wrapCoords.bottom < window.scrollY < wrapCoords.top ?
+          if (wrapCoords.bottom < window.scrollY < wrapCoords.top) {
             wrap.style.boxShadow = '0px 0px 8px 0px rgba(0,0,0,0.12), 0px 8px 8px 0px rgba(0,0,0,0.24)'
-            : wrap.style.boxShadow = '';
+          } else {
+            wrap.style.boxShadow = '';
+          }
         });
       });
     }
@@ -48,10 +52,9 @@ export default class Article extends Component {
     const news_feed_wrap = document.querySelector('.news_feed');
     wraps.forEach(wrap => { wrap.style.animation = '' });
     wraps.forEach((wrap, idx) => {
+      console.log(wrap.children)
       if (idx === i) {
-        wrap.children[0].lastChild.style.display = 'none';
-        wrap.children[0].lastChild.style.height = '0';
-        wrap.children[0].firstChild.style.fontSize = '12px';
+        wrap.children[0].style.display = 'none';
         wrap.style.margin = '';
         wrap.style.backgroundAttachment = '';
         wrap.style.height = '';
@@ -60,10 +63,19 @@ export default class Article extends Component {
       } else {
         wrap.style.display = 'flex';
       }
-    });
+    })
     news_feed_wrap.style.padding = '';
     document.querySelector('.logout_button').style.display = '';
     window.scrollTo(0, wraps[i].offsetTop - news_header.offsetHeight);
+    setTimeout(() => {
+      wraps.forEach((wrap, idx) => {
+        if (idx === i) {
+          wrap.children[0].style.display = '';
+          wrap.children[0].lastChild.style.display = 'none';
+          wrap.children[0].firstChild.style.fontSize = '12px';
+        }
+      });
+    }, 475);
     event.stopPropagation();
   }
   expandArticle(event) { //import function
@@ -76,9 +88,10 @@ export default class Article extends Component {
       if (idx !== i) {
         wrap.style.display = 'none';
       } else {
+        wrap.children[0].style.display = 'none';
         wrap.style.transition = 'width 0.275s cubic-bezier(0.4, 0.0, 0.2, 1), height 0.325s cubic-bezier(0.4, 0.0, 0.2, 1) 0.0375s'; ///
         wrap.style.width = '100vw';
-        wrap.style.height = '140vh';
+        wrap.style.height = '100vh';
         wrap.style.backgroundAttachment = 'fixed';
         wrap.style.margin = '0 0 0 0';
       }
@@ -86,6 +99,7 @@ export default class Article extends Component {
     setTimeout(() => {
       wraps.forEach((wrap, idx) => {
         if (idx === i) {
+          wrap.children[0].style.display = '';
           wrap.children[0].lastChild.style.display = 'inline';
           wrap.children[0].lastChild.style.height = 'auto';
           wrap.children[0].firstChild.style.fontSize = '16px';

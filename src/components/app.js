@@ -9,7 +9,8 @@ function mapStateToProps(state) {
     term_results: state.term_results,
     provider_news: state.provider_news,
     boolean: state.boolean,
-    search_boolean: state.search_boolean
+    search_boolean: state.search_boolean,
+    refresh_news_boolean: state.refresh_news_boolean
   }
 }
 

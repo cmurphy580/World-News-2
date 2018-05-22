@@ -28,6 +28,7 @@ html, body, .main-container {
 }
 .logout_button {
   width: 10vw;
+  margin: 5px; 
   align-self: flex-start;
 }
 /*PROVIDER MENU*/
@@ -85,7 +86,8 @@ html, body, .main-container {
    cursor: pointer;
    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
    padding: 0 !important;
-   transition: opacity 0.2s linear;
+   /*transition: opacity 0.2s linear;*/
+   transition: box-shadow 0.2s linear;
    /***/
    opacity: 0;
    animation: fadeIn 0.3s linear;

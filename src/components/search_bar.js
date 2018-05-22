@@ -25,8 +25,8 @@ export default class SearchBar extends Component {
     this.props.providerSearch(value);
     this.props.changeBoolean(this.props.boolean);
     this.props.searchBoolean(this.props.search_boolean);
-    //console.log(this.props.search_boolean);
-    //this.backToList(event);
+    this.setState({value: null});
+    this.props.refreshNews(this.props.refresh_news_boolean);
     window.scrollTo(0, 0);
   };
   onInputChange = (event, value) => { this.setState({ term: event.target.value })};
@@ -38,14 +38,12 @@ export default class SearchBar extends Component {
           month = today.getMonth() + 1 < 10 ? `0${today.getMonth() + 1}` : `${today.getMonth() + 1}`,
           day = today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`,
           date = `${year}-${month}-${day}`;
-      console.log(date);
+      //console.log(date);
       this.props.termSearch(this.state.term, date);
       this.props.changeBoolean(this.props.boolean);
       this.props.searchBoolean(this.props.search_boolean);
-      this.setState({
-        term: null,
-        value: null
-      });
+      this.props.refreshNews(this.props.refresh_news_boolean);
+      this.setState({term: ''});
       window.scrollTo(0, 0);
     }
   }

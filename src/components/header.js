@@ -10,10 +10,12 @@ import { orange500, blue900 } from 'material-ui/styles/colors';
 import base from '../base';
 
 export default class Header extends Component {
-  refreshPage() {
+  refreshPage(event) {
+    this.props.refreshNews(this.props.refresh_news_boolean);
+    console.log(this.props.refresh_news_boolean);
     window.scrollTo(0, 0);
     this.props.fetchNews();
-    window.location.reload();
+    //window.location.reload();
   }
   displaySearch(event) {
     this.props.changeBoolean(this.props.boolean);

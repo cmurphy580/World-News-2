@@ -6,7 +6,7 @@ import TermReducer from './reducer_term';
 import ProviderReducer from './reducer_provider';
 import BooleanReducer from './reducer_boolean';
 import SearchBooleanReducer from './reducer_search_boolean';
-import RefreshNewsReducer from './reducer_refresh_news'; 
+import RefreshNewsReducer from './reducer_refresh_news';
 
 const rootReducer = combineReducers({
   todays_news: TodayReducer,
